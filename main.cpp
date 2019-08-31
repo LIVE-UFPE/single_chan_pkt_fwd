@@ -71,21 +71,21 @@ int RST   = 0;
 sf_t sf = SF7;
 
 // Set center frequency
-uint32_t  freq = 868100000; // in Mhz! (868.1)
+uint32_t  freq = 914900000; // in Mhz! (914.9)
 
 // Set location
-float lat=0.0;
-float lon=0.0;
+float lat=-8.050047;
+float lon=-34.961833;
 int   alt=0;
 
 /* Informal status fields */
 static char platform[24]    = "Single Channel Gateway";  /* platform definition */
-static char email[40]       = "";                        /* used for contact email */
-static char description[64] = "";                        /* used for free form description */
+static char email[40]       = "gabrielsm0405@gmail.com";                        /* used for contact email */
+static char description[64] = "Projeto-Conectividade";                        /* used for free form description */
 
 // define servers
 // TODO: use host names and dns
-#define SERVER1 "54.72.145.119"    // The Things Network: croft.thethings.girovito.nl
+#define SERVER1 "52.62.83.250"    // The Things Network: croft.thethings.girovito.nl
 //#define SERVER2 "192.168.1.10"      // local
 #define PORT 1700                   // The port on which to send data
 
@@ -265,7 +265,7 @@ void SetupLoRa()
             sx1272 = false;
         } else {
             printf("Unrecognized transceiver.\n");
-            //printf("Version: 0x%x\n",version);
+            printf("Version: 0x%x\n",version);
             exit(1);
         }
     }
@@ -556,7 +556,7 @@ int main () {
     si_other.sin_port = htons(PORT);
 
     ifr.ifr_addr.sa_family = AF_INET;
-    strncpy(ifr.ifr_name, "eth0", IFNAMSIZ-1);  // can we rely on eth0?
+    strncpy(ifr.ifr_name, "wlan0", IFNAMSIZ-1);  // can we rely on eth0?
     ioctl(s, SIOCGIFHWADDR, &ifr);
 
     /* display result */
